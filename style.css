@@ -29,8 +29,21 @@ body {
   background-color: var(--neutral-200);
   font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
-  padding: 2rem;
+  padding: 1rem;
   margin: 2rem 5rem;
+  transition: background-image 0.5s ease, background-color 0.5s ease,
+    color 0.5s ease;
+}
+
+/* Dark mode */
+
+body.dark-mode {
+  background-image: var(--gradient-dark);
+  color: var(--neutral-0);
+}
+
+body.dark-mode .theme-toggle_btn {
+  background-color: var(--neutral-700);
 }
 
 p {
@@ -54,13 +67,15 @@ li {
   justify-content: space-between;
 }
 
-header .theme-toggle {
+header .theme-toggle_btn {
   display: flex;
   align-items: center;
   padding: 0.5rem;
   border: 1px solid var(--neutral-0);
   border-radius: 0.75rem;
   cursor: pointer;
+  background-color: var(--neutral-100);
+  transition: background-color 0.3s ease;
 }
 
 header nav {
@@ -83,31 +98,45 @@ header nav {
   border: 1px solid var(--neutral-300);
 }
 
-.btn-activate {
-  display: flex;
-  align-items: center;
-  justify-content: start; /* Ball starts on the left */
-  padding: 0.2rem 0.1rem;
-  height: 0.75rem;
-  width: 1.25rem;
-  border-radius: 0.5rem;
-  background-color: var(--neutral-300);
-  cursor: pointer;
-  transition: background-color 0.3s ease, justify-content 0.3s ease;
+/* Dark theme */
+
+body.dark-mode .btn-rmv {
+  color: var(--neutral-300);
+  background-color: transparent;
+  border-radius: 1rem;
+  border: 1px solid var(--neutral-300);
 }
 
-.ball {
-  height: 0.5rem;
-  width: 0.5rem;
+.toggle-switch {
+  position: relative;
+  height: 1rem;
+  width: 2rem;
+  border-radius: 1rem;
+  background-color: var(--neutral-300);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+}
+
+.switch-ball {
+  height: 0.75rem;
+  width: 0.75rem;
   border-radius: 50%;
   background-color: var(--neutral-0);
   transition: transform 0.3s ease;
+  transform: translateX(0);
 }
 
 /* Active state modifies only what's necessary */
-.btn-activate.active {
-  justify-content: end;
+.toggle-switch.active {
   background-color: var(--red-400);
+}
+
+.toggle-switch.active .switch-ball {
+  transform: translateX(1.4rem);
 }
 
 .filter-btn.active {
@@ -131,6 +160,18 @@ header nav {
   padding: 0.75rem;
   background-color: var(--neutral-0);
   border: 0;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark Mode */
+
+body.dark-mode .extension-card {
+  background-color: var(--neutral-800);
+  border: 1px solid var(--neutral-700);
+}
+
+body.dark-mode .extension-card p {
+  color: var(--neutral-300);
 }
 
 .extension-card_body {
@@ -159,45 +200,4 @@ header nav {
   align-items: center;
   justify-content: space-between;
   margin-top: 1rem;
-}
-
-/* Dark theme */
-
-.dark-theme {
-  background-color: var(--neutral-900);
-}
-
-.header_logo.dark {
-  background-color: var(--neutral-700);
-}
-
-.dark {
-  color: var(--neutral-0);
-}
-
-.extension-card.dark {
-  height: 8.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  background-color: var(--neutral-800);
-  border: 1px solid var(--neutral-700);
-}
-
-.btn-rmv.dark {
-  color: var(--neutral-300);
-  background-color: transparent;
-  border-radius: 1rem;
-  border: 1px solid var(--neutral-300);
-}
-
-.text.dark p {
-  color: var(--neutral-300);
-}
-
-.filter-btn.dark {
-  background-color: var(--neutral-700);
-  color: var(--neutral-0);
 }
