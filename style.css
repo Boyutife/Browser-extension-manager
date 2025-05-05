@@ -136,7 +136,7 @@ body.dark-mode .btn-rmv {
 }
 
 .toggle-switch.active .switch-ball {
-  transform: translateX(1.4rem);
+  transform: translateX(0.85rem);
 }
 
 .filter-btn.active {
