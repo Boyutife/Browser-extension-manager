@@ -28,6 +28,17 @@ toggleSwitch.forEach((toggle) => {
   });
 });
 
+const choices = document.querySelectorAll('.choice');
+
+choices.forEach((choice) => {
+  const radio = choice.querySelector('input[type="radio"]');
+  radio.addEventListener('change', () => {
+    choices.forEach((c) => {
+      c.classList.remove('selected');
+    });
+    choice.classList.add('selected');
+  });
+});
 // When a new user visits the site, the theme defaults to light mode since there is no 'theme' key stored in localStorage. The expression localStorage.getItem('theme') === 'dark' therefore evaluates to false, and isDarkMode is initialized with false.
 
 // Upon clicking the theme toggle button, the isDarkMode state is inverted using the logical NOT operator (!isDarkMode). This updated state is then persisted to localStorage using a ternary operation:
