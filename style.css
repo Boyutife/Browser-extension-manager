@@ -26,7 +26,7 @@
 }
 
 body {
-  background-color: var(--neutral-200);
+  background-image: var(--gradient-light);
   font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
   padding: 1rem;
@@ -85,7 +85,41 @@ header nav {
   justify-content: space-between;
 }
 
-.filter-btn,
+.filter-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choice {
+  text-align: center;
+  padding: 0.2rem 0.75rem;
+  border-radius: 1rem;
+  margin-left: 2rem;
+  border: 1px solid var(--neutral-300);
+  background-color: var(--neutral-0);
+  color: var(--neutral-900);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.choice input {
+  display: none;
+}
+
+.choice.selected {
+  background-color: var(--red-400);
+  color: var(--neutral-0);
+  border: none;
+}
+
+.choice label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .btn-rmv {
   background-color: var(--neutral-0);
   border-radius: 1rem;
@@ -159,7 +193,7 @@ body.dark-mode .btn-rmv {
   border-radius: 0.75rem;
   padding: 0.75rem;
   background-color: var(--neutral-0);
-  border: 0;
+  border: 1px solid var(--neutral-200);
   transition: background-color 0.3s ease;
 }
 
@@ -200,4 +234,9 @@ body.dark-mode .extension-card p {
   align-items: center;
   justify-content: space-between;
   margin-top: 1rem;
+}
+
+.active-extension-btn {
+  background-color: var(--red-400);
+  color: var(--neutral-0);
 }
