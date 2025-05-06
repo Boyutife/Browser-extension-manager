@@ -42,9 +42,33 @@
       <nav>
         <h1>Extensions List</h1>
         <div class="filter-btns">
-          <button class="filter-btn">All</button>
-          <button class="filter-btn">Active</button>
-          <button class="filter-btn">Inactive</button>
+          <div class="choice selected">
+            <input
+              type="radio"
+              name="filter"
+              id="all-extension-btn"
+              value="all"
+            />
+            <label for="all-extension-btn">All</label>
+          </div>
+          <div class="choice">
+            <input
+              type="radio"
+              name="filter"
+              id="active-extension-btn"
+              value="active"
+            />
+            <label for="active-extension-btn">Active</label>
+          </div>
+          <div class="choice">
+            <input
+              type="radio"
+              name="filter"
+              id="inactive-extension-btn"
+              value="inactive"
+            />
+            <label for="inactive-extension-btn">Inactive</label>
+          </div>
         </div>
       </nav>
     </header>
