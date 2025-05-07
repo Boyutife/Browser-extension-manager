@@ -1,7 +1,7 @@
 const themeToggleBtn = document.querySelector('.theme-toggle_btn');
 const body = document.body;
 const themeIcon = document.querySelector('.theme-icon');
-
+const extensionCard = document.querySelectorAll('.extension-card');
 const toggleSwitch = document.querySelectorAll('.toggle-switch');
 
 let isDarkMode = localStorage.getItem('theme') === 'dark';
@@ -22,28 +22,73 @@ themeToggleBtn.addEventListener('click', () => {
   applyTheme();
 });
 
-toggleSwitch.forEach((toggle) => {
+toggleSwitch.forEach((toggle, index) => {
   toggle.addEventListener('click', () => {
     toggle.classList.toggle('active');
+    localStorage.setItem(
+      `toggleState-${index}`,
+      toggle.classList.contains('active')
+    );
+  });
+});
+
+// function loadToggleStates() {
+//   toggleSwitch.forEach((toggle, index) => {
+//     const state = localStorage.getItem(`toggleState-${index}`);
+//     if (state === 'true') {
+//       toggle.classList.add('active');
+//     } else {
+//       toggle.classList.remove('active');
+//     }
+//   });
+// }
+
+// loadToggleStates();
+
+window.addEventListener('DOMContentLoaded', () => {
+  toggleSwitch.forEach((toggle, index) => {
+    const state = localStorage.getItem(`toggleState-${index}`);
+    if (state === 'true') {
+      toggle.classList.add('active');
+    } else {
+      toggle.classList.remove('active');
+    }
   });
 });
 
 const choices = document.querySelectorAll('.choice');
 
 choices.forEach((choice) => {
-  const radio = choice.querySelector('input[type="radio"]');
-  radio.addEventListener('change', () => {
-    choices.forEach((c) => {
-      c.classList.remove('selected');
-    });
+  const radioBtn = choice.querySelector('input[type="radio"]');
+  radioBtn.addEventListener('change', (e) => {
+    const selectedValue = e.target.value;
+    // update selected class
+    choices.forEach((c) => c.classList.remove('selected'));
     choice.classList.add('selected');
+    // Filter extension cards based on selected value
+    extensionCard.forEach((card) => {
+      const isActive = card
+        .querySelector('.toggle-switch')
+        .classList.contains('active');
+      if (selectedValue === 'all') {
+        card.style.display = 'flex';
+      } else if (selectedValue === 'active') {
+        card.style.display = isActive ? 'flex' : 'none';
+      } else if (selectedValue === 'inactive') {
+        card.style.display = !isActive ? 'flex' : 'none';
+      }
+    });
   });
 });
-// When a new user visits the site, the theme defaults to light mode since there is no 'theme' key stored in localStorage. The expression localStorage.getItem('theme') === 'dark' therefore evaluates to false, and isDarkMode is initialized with false.
 
-// Upon clicking the theme toggle button, the isDarkMode state is inverted using the logical NOT operator (!isDarkMode). This updated state is then persisted to localStorage using a ternary operation:
-// localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+const rmvBtns = document.querySelectorAll('.btn-rmv');
 
-// The applyTheme() function is immediately invoked to reflect the current theme preference. It conditionally toggles the 'dark-mode' class on the body element and updates the theme icon and its alt text based on the value of isDarkMode.
-
-// On future visits, the script retrieves the saved theme preference from localStorage. If the value is 'dark', isDarkMode is set to true, and applyTheme() is executed to apply dark mode styling upon page load.
+rmvBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    extensionCard.forEach((card) => {
+      if (card.contains(e.target)) {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
