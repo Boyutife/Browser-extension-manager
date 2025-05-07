@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: (https://your-solution-url.com)
+- Solution URL: (https://www.frontendmentor.io/solutions/browser-extension-manager-ui-GJHFOnfVG4)
 - Live Site URL: (https://boyutife.github.io/Browser-extension-manager/)
 
 ## My process
